@@ -1,0 +1,10 @@
+﻿@page "/databinding"
+@rendermode InteractiveServer
+
+<h3>Hello @name</h3>
+
+<input type="text" @bind="name" placeholder="Type your name" />
+
+@code {
+    private string name = "";
+}

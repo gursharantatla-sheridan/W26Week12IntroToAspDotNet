@@ -7,10 +7,17 @@
 
 <p role="status">Current count: @currentCount</p>
 
+<div class="mb-2">
+    <input type="number" @bind="startingValue" class="form-control" />
+    <button class="btn btn-secondary mt-2" @onclick="SetStartingValue">Set Starting Value</button>
+</div>
+
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-danger" @onclick="ResetCount">Reset</button>
 
 @code {
     private int currentCount = 0;
+    private int startingValue = 0;
 
     [Parameter]
     public int IncrementAmount { get; set; } = 1;
@@ -18,5 +25,16 @@
     private void IncrementCount()
     {
         currentCount += IncrementAmount;
+    }
+
+    private void ResetCount()
+    {
+        currentCount = 0;
+        startingValue = 0;
+    }
+
+    private void SetStartingValue()
+    {
+        currentCount = startingValue;
     }
 }
