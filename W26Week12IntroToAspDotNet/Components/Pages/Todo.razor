@@ -5,6 +5,35 @@
 
 <h3>Todo</h3>
 
-@code {
+<input type="text" placeholder="Something to do..." @bind="newTask" />
+<button @onclick="AddTask">Add Task</button>
 
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>@todo.Task</li>
+    }
+</ul>
+
+@code {
+    public List<TodoItem> todos = new();
+    private string newTask = "";
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            TodoItem todo = new();
+            todo.Task = newTask;
+            todos.Add(todo);
+
+            newTask = "";
+        }
+    }
+
+    public class TodoItem
+    {
+        public string? Task { get; set; }
+        public bool IsDone { get; set; } = false;
+    }
 }
