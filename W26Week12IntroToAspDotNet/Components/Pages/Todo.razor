@@ -3,15 +3,20 @@
 
 <PageTitle>Todo Example</PageTitle>
 
-<h3>Todo</h3>
+<h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
 
-<input type="text" placeholder="Something to do..." @bind="newTask" />
-<button @onclick="AddTask">Add Task</button>
+<div class="d-flex align-items-center mb-3">
+    <input type="text" placeholder="Something to do..." @bind="newTask" class="form-control me-2" style="max-width: 400px" />
+    <button class="btn btn-primary" @onclick="AddTask">Add Task</button>
+</div>
 
-<ul>
+<ul class="list-unstyled">
     @foreach (var todo in todos)
     {
-        <li>@todo.Task</li>
+        <li class="d-flex align-items-center mb-2" style="max-width: 400px">
+            <input type="checkbox" class="form-check-input me-2" @bind="todo.IsDone" />
+            <input type="text" class="form-control" @bind="todo.Task" />
+        </li>
     }
 </ul>
 
